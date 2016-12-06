@@ -50,8 +50,7 @@ int main(int argc, char* argv[]){
 	TApplication *theApp = new TApplication("app", &argc, argv);
 	TQObject::Connect("TCanvas", "Closed()", "TApplication", gApplication, "Terminate()");
 
-	//TFile* f = new TFile("events-11584030.root");
-    TFile* f = new TFile("events-11124001.root");
+	TFile* f = new TFile("events-11584030.root");
 	TTree* t = (TTree*)f->Get("MCDecayTreeTuple/MCDecayTree");
 
 	double K_TRUEP_X,K_TRUEP_Y,K_TRUEP_Z,K_TRUEP_E;
