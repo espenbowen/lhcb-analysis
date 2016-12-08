@@ -55,10 +55,10 @@ int main(int argc, char* argv[]){
 
 	double K_TRUEP_X,K_TRUEP_Y,K_TRUEP_Z,K_TRUEP_E;
     double Pi_TRUEP_X,Pi_TRUEP_Y,Pi_TRUEP_Z,Pi_TRUEP_E;
-    double eplus_TRUEP_X,eplus_TRUEP_Y,eplus_TRUEP_Z,eplus_TRUEP_E;
-    double eminus_TRUEP_X,eminus_TRUEP_Y,eminus_TRUEP_Z,eminus_TRUEP_E;
+    double muplus_TRUEP_X,muplus_TRUEP_Y,muplus_TRUEP_Z,muplus_TRUEP_E;
+    double muminus_TRUEP_X,muminus_TRUEP_Y,muminus_TRUEP_Z,muminus_TRUEP_E;
 
-    TLorentzVector true_p_K,true_p_Pi,true_p_eplus,true_p_eminus;
+    TLorentzVector true_p_K,true_p_Pi,true_p_muplus,true_p_muminus;
     double true_thetal,true_thetak,true_phi;
 
 	t->SetBranchAddress("Kplus_TRUEP_X",&K_TRUEP_X);
@@ -71,15 +71,15 @@ int main(int argc, char* argv[]){
     t->SetBranchAddress("piminus_TRUEP_Z",&Pi_TRUEP_Z);
     t->SetBranchAddress("piminus_TRUEP_E",&Pi_TRUEP_E);
 
-    t->SetBranchAddress("eplus_TRUEP_X",&eplus_TRUEP_X);
-    t->SetBranchAddress("eplus_TRUEP_Y",&eplus_TRUEP_Y);  
-    t->SetBranchAddress("eplus_TRUEP_Z",&eplus_TRUEP_Z);
-    t->SetBranchAddress("eplus_TRUEP_E",&eplus_TRUEP_E);
+    t->SetBranchAddress("muplus_TRUEP_X",&muplus_TRUEP_X);
+    t->SetBranchAddress("muplus_TRUEP_Y",&muplus_TRUEP_Y);  
+    t->SetBranchAddress("muplus_TRUEP_Z",&muplus_TRUEP_Z);
+    t->SetBranchAddress("muplus_TRUEP_E",&muplus_TRUEP_E);
 
-    t->SetBranchAddress("eminus_TRUEP_X",&eminus_TRUEP_X);
-    t->SetBranchAddress("eminus_TRUEP_Y",&eminus_TRUEP_Y);
-    t->SetBranchAddress("eminus_TRUEP_Z",&eminus_TRUEP_Z);
-    t->SetBranchAddress("eminus_TRUEP_E",&eminus_TRUEP_E);
+    t->SetBranchAddress("muminus_TRUEP_X",&muminus_TRUEP_X);
+    t->SetBranchAddress("muminus_TRUEP_Y",&muminus_TRUEP_Y);
+    t->SetBranchAddress("muminus_TRUEP_Z",&muminus_TRUEP_Z);
+    t->SetBranchAddress("muminus_TRUEP_E",&muminus_TRUEP_E);
 
     int n_bins = 40;
 
@@ -100,15 +100,15 @@ int main(int argc, char* argv[]){
 
     	true_p_K.SetPxPyPzE(K_TRUEP_X,K_TRUEP_Y,K_TRUEP_Z,K_TRUEP_E);
         true_p_Pi.SetPxPyPzE(Pi_TRUEP_X,Pi_TRUEP_Y,Pi_TRUEP_Z,Pi_TRUEP_E);
-        true_p_eplus.SetPxPyPzE(eplus_TRUEP_X,eplus_TRUEP_Y,eplus_TRUEP_Z,eplus_TRUEP_E);
-        true_p_eminus.SetPxPyPzE(eminus_TRUEP_X,eminus_TRUEP_Y,eminus_TRUEP_Z,eminus_TRUEP_E);
+        true_p_muplus.SetPxPyPzE(muplus_TRUEP_X,muplus_TRUEP_Y,muplus_TRUEP_Z,muplus_TRUEP_E);
+        true_p_muminus.SetPxPyPzE(muminus_TRUEP_X,muminus_TRUEP_Y,muminus_TRUEP_Z,muminus_TRUEP_E);
 
-        calc_angles(true_p_K,true_p_Pi,true_p_eplus,true_p_eminus,true_thetal,true_thetak,true_phi);
+        calc_angles(true_p_K,true_p_Pi,true_p_muplus,true_p_muminus,true_thetal,true_thetak,true_phi);
         h_thetal->Fill(cos(true_thetal));
         h_thetak->Fill(cos(true_thetak));
 		h_phi->Fill(true_phi); 
 
-        h_B0_M->Fill((true_p_K+true_p_Pi+true_p_eplus+true_p_eminus).M());
+        h_B0_M->Fill((true_p_K+true_p_Pi+true_p_muplus+true_p_muminus).M());
         h_Kst_M->Fill((true_p_K+true_p_Pi).M());
     }
 
